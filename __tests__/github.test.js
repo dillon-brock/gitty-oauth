@@ -4,7 +4,7 @@ const request = require('supertest');
 const app = require('../lib/app');
 jest.mock('../lib/services/github');
 
-describe('backend-express-template routes', () => {
+describe('github routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
