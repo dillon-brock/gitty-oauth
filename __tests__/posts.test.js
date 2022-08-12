@@ -23,14 +23,14 @@ describe('post routes', () => {
   it('should add a new post associated with the user', async () => {
     const newPost = {
       content: 'test post',
-      user_id: 4,
     };
+    await agent.get('/api/v1/github/callback?code=123');
     const res = await agent.post('/api/v1/posts').send(newPost);
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
       id: expect.any(String),
       content: 'test post',
-      user_id: 4,
+      user_id: expect.any(String),
     });
   });
   afterAll(() => {
