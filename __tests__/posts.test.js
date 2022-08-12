@@ -20,6 +20,19 @@ describe('post routes', () => {
       username: expect.any(String),
     });
   });
+  it('should add a new post associated with the user', async () => {
+    const newPost = {
+      content: 'test post',
+      user_id: 4,
+    };
+    const res = await agent.post('/api/v1/posts').send(newPost);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      content: 'test post',
+      user_id: 4,
+    });
+  });
   afterAll(() => {
     pool.end();
   });
