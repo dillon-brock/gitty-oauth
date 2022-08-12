@@ -6,7 +6,7 @@ jest.mock('../lib/services/github');
 
 const agent = request.agent(app);
 
-describe('post routes', async () => {
+describe('post routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
@@ -14,8 +14,10 @@ describe('post routes', async () => {
     await agent.get('/api/v1/github/callback?code=123');
     const res = await agent.get('/api/v1/posts');
     expect(res.body[0]).toEqual({
+      id: expect.any(String),
+      avatar: expect.any(String),
       content: expect.any(String),
-      username: expect.any(String)
+      username: expect.any(String),
     });
   });
   afterAll(() => {
